@@ -1,0 +1,27 @@
+ SAE 2.04 BASE DE DONNEES
+**************************
+DEPARTEMENT =>
+Region va dans département
+Département ya pas de doublon car le couple numero nom est unique
+
+COMMUNE =>
+commune = (code département + nom département) -> ID
+
+FORMATION =>
+commune va dans formation (nom + numéro)
+Code de l'etablissement dans Formation
+nom de l'academie dans la Formation
+id Filiere dans Formation
+
+
+ADMISSIONS GENERALISTES =>
+ID = (cod_aff_form;session_annee)
+
+RANG_DERNIER => 
+ID = (cod_aff_form;session_annee;libelle_regroupement)
+
+EFFECTIF =>
+ID = (cod_aff_form;session_annee;libelle_mention)
+
+ADMISSION_SELON_TYPE => 
+ID = (cod_aff_form;session_annee;type_bac)
