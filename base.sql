@@ -5,107 +5,107 @@ set schema 'distribill';
 
 
 CREATE TABLE session(
-  session_annee                     INTEGER     NOT NULL,
+  session_annee                             INTEGER     NOT NULL,
   CONSTRAINT session_pk PRIMARY KEY(session_annee)            
 );
 
 
 CREATE TABLE region (
-  region_nom                        VARCHAR     NOT NULL,
+  region_nom                                VARCHAR     NOT NULL,
   CONSTRAINT region_pk PRIMARY KEY(region_nom)
 );
 
 
 CREATE TABLE departement (
-  departement_code                  VARCHAR     NOT NULL,
-  departement_nom                   VARCHAR     NOT NULL,
-  region_nom                        VARCHAR     NOT NULL,
+  departement_code                          VARCHAR     NOT NULL,
+  departement_nom                           VARCHAR     NOT NULL,
+  region_nom                                VARCHAR     NOT NULL,
   CONSTRAINT departement_pk PRIMARY KEY(departement_code)
 );
 
 
 CREATE TABLE commune(
-  commune_nom                       VARCHAR     NOT NULL,
-  departement_code                  VARCHAR     NOT NULL,
+  commune_nom                               VARCHAR     NOT NULL,
+  departement_code                          VARCHAR     NOT NULL,
   CONSTRAINT commune_pk PRIMARY KEY(commune_nom,departement_code)
 );
 
 
 CREATE TABLE etablissement(
-  etablissement_code_uai            VARCHAR     NOT NULL,
-  etablissement_nom                 VARCHAR     NOT NULL,
-  etablissement_statut              VARCHAR     NOT NULL,
+  etablissement_code_uai                    VARCHAR     NOT NULL,
+  etablissement_nom                         VARCHAR     NOT NULL,
+  etablissement_statut                      VARCHAR     NOT NULL,
   CONSTRAINT etablissement_pk PRIMARY KEY(etablissement_code_uai)
 );
 
 
 CREATE TABLE formation (
-  cod_aff_form                      VARCHAR     NOT NULL,
-  filiere_libelle_detaille          VARCHAR     NOT NULL,
-  coordonnees_gps                   VARCHAR     NOT NULL,
-  list_com                          VARCHAR     NOT NULL,
-  concours_communs_banque_epreuve   VARCHAR     NOT NULL,
-  url_formation                     VARCHAR     NOT NULL,
-  tri                               VARCHAR     NOT NULL,
-  commune_nom                       VARCHAR     NOT NULL,
-  departement_code                  VARCHAR     NOT NULL,
-  filiere_id                        INTEGER     NOT NULL,
-  academie_nom                      VARCHAR     NOT NULL,
-  etablissement_code_uai            VARCHAR     NOT NULL,
+  cod_aff_form                              VARCHAR     NOT NULL,
+  filiere_libelle_detaille                  VARCHAR     NOT NULL,
+  coordonnees_gps                           VARCHAR     NOT NULL,
+  list_com                                  VARCHAR     NOT NULL,
+  concours_communs_banque_epreuve           VARCHAR     NOT NULL,
+  url_formation                             VARCHAR     NOT NULL,
+  tri                                       VARCHAR     NOT NULL,
+  commune_nom                               VARCHAR     NOT NULL,
+  departement_code                          VARCHAR     NOT NULL,
+  filiere_id                                INTEGER     NOT NULL,
+  academie_nom                              VARCHAR     NOT NULL,
+  etablissement_code_uai                    VARCHAR     NOT NULL,
   CONSTRAINT formation_pk PRIMARY KEY(cod_aff_form)
 );
 
 
 CREATE TABLE filiere (
-  filiere_id                        INTEGER     NOT NULL,
-  filiere_libelle                   VARCHAR,
-  filiere_libelle_tres_abrege       VARCHAR,
-  filiere_libelle_abrege            VARCHAR,
-  filiere_libelle_detaille_bis      VARCHAR,
+  filiere_id                                INTEGER     NOT NULL,
+  filiere_libelle                           VARCHAR,
+  filiere_libelle_tres_abrege               VARCHAR,
+  filiere_libelle_abrege                    VARCHAR,
+  filiere_libelle_detaille_bis              VARCHAR,
   CONSTRAINT filiere_pk PRIMARY KEY(filiere_id)
 );
 
 
 CREATE TABLE academie(
-  academie_nom                      VARCHAR     NOT NULL,
+  academie_nom                              VARCHAR     NOT NULL,
   CONSTRAINT academie_pk PRIMARY KEY(academie_nom)
 );
 
 
 CREATE TABLE rang_dernier_appele_selon_regroupement(
-  cod_aff_form                      VARCHAR,
-  session_annee                     INTEGER,
-  libelle_regroupement              VARCHAR,
-  rang_dernier_appele               INTEGER,
+  cod_aff_form                              VARCHAR,
+  session_annee                             INTEGER,
+  libelle_regroupement                      VARCHAR,
+  rang_dernier_appele                       INTEGER,
   CONSTRAINT rang_dernier_appele_selon_regroupement_pk PRIMARY KEY(cod_aff_form,session_annee,libelle_regroupement)
 );
 
 -- Attributs = GOOD
 CREATE TABLE regroupement(
-  libelle_regroupement              VARCHAR     NOT NULL,
+  libelle_regroupement                      VARCHAR     NOT NULL,
   CONSTRAINT regroupement_pk PRIMARY KEY(libelle_regroupement)
 );
 
 CREATE TABLE admissions_generalistes(
-  cod_aff_form                      VARCHAR     NOT NULL,
-  session_annee                     INTEGER,
-  selectivite                       VARCHAR,
-  capacite                          INTEGER,
-  effectif_total_candidats          INTEGER,
-  effectif_total_candidates         INTEGER,
+  cod_aff_form                              VARCHAR     NOT NULL,
+  session_annee                             INTEGER,
+  selectivite                               VARCHAR,
+  capacite                                  INTEGER,
+  effectif_total_candidats                  INTEGER,
+  effectif_total_candidates                 INTEGER,
   CONSTRAINT admissions_generalistes_pk PRIMARY KEY(cod_aff_form,session_annee)
 );
 
 CREATE TABLE admissions_selon_type_neo_bac(
-  cod_aff_form                      VARCHAR,
-  type_bac                          VARCHAR,
-  session_annee                     INTEGER,
-  effectif_candidat_neo_bac_classes INTEGER,
+  cod_aff_form                              VARCHAR,
+  type_bac                                  VARCHAR,
+  session_annee                             INTEGER,
+  effectif_candidat_neo_bac_classes         INTEGER,
   CONSTRAINT admissions_selon_type_neo_bac_pk PRIMARY KEY(cod_aff_form,session_annee,type_bac)
 );
 
 CREATE TABLE mention_bac(
-    libelle_mention VARCHAR NOT NULL,
+    libelle_mention                         VARCHAR NOT NULL,
     CONSTRAINT mention_bac_pk PRIMARY KEY(libelle_mention)
 );
 
