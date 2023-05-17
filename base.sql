@@ -21,7 +21,7 @@ CREATE TABLE departement (
   departement_code                  VARCHAR     NOT NULL,
   departement_nom                   VARCHAR     NOT NULL,
   region_nom                        VARCHAR     NOT NULL,
-  CONSTRAINT departement_pk PRIMARY KEY(departement_code,region_nom)
+  CONSTRAINT departement_pk PRIMARY KEY(departement_code)
 );
 
 
@@ -82,11 +82,11 @@ CREATE TABLE academie(
 CREATE TABLE rang_dernier_appele_selon_regroupement(
   cod_aff_form                      VARCHAR     NOT NULL,
   session_annee                     INTEGER     NOT NULL,
-  libelle-regroupement              VARCHAR     NOT NULL,
+  libelle_regroupement              VARCHAR     NOT NULL,
   rang_dernier_appele_groupe1       INTEGER,
   rang_dernier_appele_groupe2       INTEGER,
   rang_dernier_appele_groupe3       INTEGER,
-  CONSTRAINT rang_dernier_appele_selon_regroupement_pk PRIMARY KEY(cod_aff_form,session_annee,libelle-regroupement)
+  CONSTRAINT rang_dernier_appele_selon_regroupement_pk PRIMARY KEY(cod_aff_form,session_annee,libelle_regroupement)
 );
 
 -- Attributs = GOOD
@@ -105,11 +105,11 @@ CREATE TABLE admissions_generalistes(
   capacite                          INTEGER,
   effectif_total_candidats          INTEGER,
   effectif_total_candidates         INTEGER,
-  CONSTRAINT regroupement_pk PRIMARY KEY(cod_aff_form,session_annee)
+  CONSTRAINT admissions_generalistes_pk PRIMARY KEY(cod_aff_form,session_annee)
 );
 
 CREATE TABLE admissions_selon_type_neo_bac(
-  cod_aff_form                      INTEGER,
+  cod_aff_form                      VARCHAR,
   type_bac                          VARCHAR,
   session_annee                     INTEGER,
   effectif_candidat_neo_bac_classes INTEGER,
@@ -194,11 +194,6 @@ ADD CONSTRAINT admissions_generalistes_fk_formation
 FOREIGN KEY(cod_aff_form) 
 references formation(cod_aff_form);
 
-ALTER TABLE departement 
-ADD CONSTRAINT departement_fk_region 
-FOREIGN KEY(region_nom) 
-references region(region_nom);
-
 ALTER TABLE rang_dernier_appele_selon_regroupement
     ADD CONSTRAINT rang_dernier_appele_selon_regoupement_fk_regroupement
     FOREIGN KEY(libelle_regroupement)
@@ -212,12 +207,12 @@ Alter TABLE rang_dernier_appele_selon_regroupement
 ALTER TABLE rang_dernier_appele_selon_regroupement
     ADD CONSTRAINT rang_dernier_appele_selon_regroupement_fk_formation
     FOREIGN KEY(cod_aff_form)
-    references formation(code_aff_form);
+    references formation(cod_aff_form);
 
 ALTER TABLE effectif_selon_mention
     ADD CONSTRAINT effectif_selon_mention_fk_mention_bac
     FOREIGN KEY(libelle_mention)
-    references mention(libelle_mention);
+    references mention_bac(libelle_mention);
 
 ALTER TABLE effectif_selon_mention
     ADD CONSTRAINT effectif_selon_mention_fk_session
@@ -226,5 +221,6 @@ ALTER TABLE effectif_selon_mention
 
 ALTER TABLE effectif_selon_mention
     ADD CONSTRAINT effectif_selon_mention_fk_formation
-    FOREIGN KEY(code_aff_form)
+    FOREIGN KEY(cod_aff_form)
     references formation(cod_aff_form);
+
