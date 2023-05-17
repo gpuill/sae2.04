@@ -4,19 +4,18 @@ create schema distribill;
 set schema 'distribill';
 
 
--- Attributs = GOOD
 CREATE TABLE session(
   session_annee                     INTEGER     NOT NULL,
   CONSTRAINT session_pk PRIMARY KEY(session_annee)            
 );
 
--- Attributs = GOOD
+
 CREATE TABLE region (
   region_nom                        VARCHAR     NOT NULL,
   CONSTRAINT region_pk PRIMARY KEY(region_nom)
 );
 
--- Attributs = GOOD
+
 CREATE TABLE departement (
   departement_code                  VARCHAR     NOT NULL,
   departement_nom                   VARCHAR     NOT NULL,
@@ -25,7 +24,6 @@ CREATE TABLE departement (
 );
 
 
--- Attributs = GOOD
 CREATE TABLE commune(
   commune_nom                       VARCHAR     NOT NULL,
   departement_code                  VARCHAR     NOT NULL,
@@ -33,7 +31,6 @@ CREATE TABLE commune(
 );
 
 
--- Attributs = GOOD
 CREATE TABLE etablissement(
   etablissement_code_uai            VARCHAR     NOT NULL,
   etablissement_nom                 VARCHAR     NOT NULL,
@@ -41,7 +38,7 @@ CREATE TABLE etablissement(
   CONSTRAINT etablissement_pk PRIMARY KEY(etablissement_code_uai)
 );
 
---Double check pas sur qu'il y est tout les attributs 
+
 CREATE TABLE formation (
   cod_aff_form                      VARCHAR     NOT NULL,
   filiere_libelle_detaille          VARCHAR     NOT NULL,
@@ -59,49 +56,40 @@ CREATE TABLE formation (
 );
 
 
--- Attributs = GOOD
 CREATE TABLE filiere (
   filiere_id                        INTEGER     NOT NULL,
-  filiere_libelle                   VARCHAR     NOT NULL,
-  filiere_libelle_tres_abrege       VARCHAR     NOT NULL,
-  filiere_libelle_detaille          VARCHAR     NOT NULL, 
-  filiere_libelle_abrege            VARCHAR     NOT NULL,
-  filiere_libelle_detaille_bis      VARCHAR     NOT NULL,
-  filiere_libelle_tres_detaille     VARCHAR     NOT NULL, 
+  filiere_libelle                   VARCHAR,
+  filiere_libelle_tres_abrege       VARCHAR,
+  filiere_libelle_abrege            VARCHAR,
+  filiere_libelle_detaille_bis      VARCHAR,
   CONSTRAINT filiere_pk PRIMARY KEY(filiere_id)
 );
 
--- Attributs = GOOD
+
 CREATE TABLE academie(
   academie_nom                      VARCHAR     NOT NULL,
   CONSTRAINT academie_pk PRIMARY KEY(academie_nom)
 );
 
 
--- Attributs = GOOD
 CREATE TABLE rang_dernier_appele_selon_regroupement(
-  cod_aff_form                      VARCHAR     NOT NULL,
-  session_annee                     INTEGER     NOT NULL,
-  libelle_regroupement              VARCHAR     NOT NULL,
-  rang_dernier_appele_groupe1       INTEGER,
-  rang_dernier_appele_groupe2       INTEGER,
-  rang_dernier_appele_groupe3       INTEGER,
+  cod_aff_form                      VARCHAR,
+  session_annee                     INTEGER,
+  libelle_regroupement              VARCHAR,
+  rang_dernier_appele               INTEGER,
   CONSTRAINT rang_dernier_appele_selon_regroupement_pk PRIMARY KEY(cod_aff_form,session_annee,libelle_regroupement)
 );
 
 -- Attributs = GOOD
 CREATE TABLE regroupement(
   libelle_regroupement              VARCHAR     NOT NULL,
-  regroupement_1                    INTEGER,
-  regroupement_2                    INTEGER,
-  regroupement_3                    INTEGER,
   CONSTRAINT regroupement_pk PRIMARY KEY(libelle_regroupement)
 );
 
 CREATE TABLE admissions_generalistes(
   cod_aff_form                      VARCHAR     NOT NULL,
   session_annee                     INTEGER,
-  selectivite                       VARCHAR     NOT NULL,
+  selectivite                       VARCHAR,
   capacite                          INTEGER,
   effectif_total_candidats          INTEGER,
   effectif_total_candidates         INTEGER,
@@ -127,15 +115,10 @@ CREATE TABLE type_bac(
 );
 
 CREATE TABLE effectif_selon_mention(
-    libelle_mention VARCHAR NOT NULL,
-    cod_aff_form VARCHAR NOT NULL,
-    session_annee INTEGER NOT NULL,
-    effectif_admis_neo_bac_selon_mention_type_mention_sans_info INTEGER NOT NULL,
-    effectif_admis_neo_bac_selon_mention_type_mention_sans_mention INTEGER NOT NULL,
-    effectif_admis_neo_bac_selon_mention_type_mention_assez_bien INTEGER NOT NULL,
-    effectif_admis_neo_bac_selon_mention_type_mention_bien INTEGER NOT NULL,
-    effectif_admis_neo_bac_selon_mention_type_mention_tres_bien INTEGER NOT NULL,
-    effectif_admis_neo_bac_selon_mention_type_mention_tres_bien_fel INTEGER NOT NULL,
+    libelle_mention                         VARCHAR,
+    cod_aff_form                            VARCHAR,
+    session_annee                           INTEGER,
+    effectif_admis_neo_bac_selon_mention    INTEGER,
     CONSTRAINT effectif_selon_mention_pk PRIMARY KEY(libelle_mention,cod_aff_form,session_annee)
 );
 
