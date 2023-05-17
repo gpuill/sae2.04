@@ -81,11 +81,11 @@ CREATE TABLE academie(
 CREATE TABLE rang_dernier_appele_selon_regroupement(
   cod_aff_form                      VARCHAR     NOT NULL,
   session_annee                     INTEGER     NOT NULL,
-  libelle-regroupement              VARCHAR     NOT NULL,
+  libelle_regroupement              VARCHAR     NOT NULL,
   rang_dernier_appele_groupe1       INTEGER,
   rang_dernier_appele_groupe2       INTEGER,
   rang_dernier_appele_groupe3       INTEGER,
-  CONSTRAINT rang_dernier_appele_selon_regroupement_pk PRIMARY KEY(cod_aff_form,session_annee,libelle-regroupement)
+  CONSTRAINT rang_dernier_appele_selon_regroupement_pk PRIMARY KEY(cod_aff_form,session_annee,libelle_regroupement)
 );
 
 # Attributs = GOOD
