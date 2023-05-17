@@ -41,7 +41,7 @@ CREATE TABLE etablissement(
   CONSTRAINT etablissement_pk PRIMARY KEY(etablissement_code_uai)
 );
 
-#Double check pas sur qu'il y est tout les attributs 
+--Double check pas sur qu'il y est tout les attributs 
 CREATE TABLE formation (
   cod_aff_form                      VARCHAR     NOT NULL,
   filiere_libelle_detaille          VARCHAR     NOT NULL,
@@ -142,3 +142,33 @@ ALTER TABLE departement
 ADD CONSTRAINT departement_fk_region 
 FOREIGN KEY(region_nom) 
 references region(region_nom);
+
+ALTER TABLE rang_dernier_appele_selon_regroupement
+    ADD CONSTRAINT rang_dernier_appele_selon_regoupement_fk_regroupement
+    FOREIGN KEY(libelle_regroupement)
+    references regroupement(libelle_regroupement);
+
+Alter TABLE rang_dernier_appele_selon_regroupement
+    ADD CONSTRAINT rang_dernier_appele_selon_regroupement_fk_session
+    FOREIGN KEY(session_annee)
+    references session(session_annee);
+
+ALTER TABLE rang_dernier_appele_selon_regroupement
+    ADD CONSTRAINT rang_dernier_appele_selon_regroupement_fk_formation
+    FOREIGN KEY(cod_aff_form)
+    references formation(code_aff_form);
+
+ALTER TABLE effectif_selon_mention
+    ADD CONSTRAINT effectif_selon_mention_fk_mention_bac
+    FOREIGN KEY(libelle_mention)
+    references mention(libelle_mention);
+
+ALTER TABLE effectif_selon_mention
+    ADD CONSTRAINT effectif_selon_mention_fk_session
+    FOREIGN KEY(session_annee)
+    references session(session_annee);
+
+ALTER TABLE effectif_selon_mention
+    ADD CONSTRAINT effectif_selon_mention_fk_formation
+    FOREIGN KEY(code_aff_form)
+    references formation(cod_aff_form);
