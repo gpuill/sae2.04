@@ -1,33 +1,3 @@
-CREATE TABLE departement (
-    departement_code VARCHAR NOT NULL,
-    departement_nom VARCHAR NOT NULL,
-    region_nom VARCHAR NOT NULL,
-    CONSTRAINT departement_pk PRIMARY KEY(departement_code,region_nom)
-);
-
-CREATE TABLE commune(
-    commune_nom VARCHAR NOT NULL,
-    com_departement_code VARCHAR NOT NULL,
-    CONSTRAINT commune_pk PRIMARY KEY(commune_nom,com_departement_code)
-);
-
-CREATE TABLE etablissement(
-    etablissement_code_uai VARCHAR NOT NULL,
-    etablissement_nom VARCHAR NOT NULL,
-    etablissement_statut VARCHAR NOT NULL,
-    CONSTRAINT etablissement_pk PRIMARY KEY(etablissement_code_uai)
-);
-
-CREATE TABLE regroupement(
-    libelle_regroupement VARCHAR NOT NULL,
-    CONSTRAINT regroupement_pk PRIMARY KEY(libelle_regroupement)
-);
-
-CREATE TABLE session(
-    session_annee INT NOT NULL,
-    CONSTRAINT session_pk PRIMARY KEY(session_annee)
-);
-
 CREATE TABLE mention_bac(
     libelle_mention VARCHAR NOT NULL,
     CONSTRAINT mention_bac_pk PRIMARY KEY(libelle_mention)
